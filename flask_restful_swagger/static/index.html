@@ -53,10 +53,11 @@
       log("key: " + key);
       if(key && key.trim() != "") {
         log("added key " + key);
-        window.authorizations.add("key", new ApiKeyAuthorization("api_key", key, "query"));
 
         {% if '{{auth_token_type}}' %}
-          window.authorizations.add('key', new ApiKeyAuthorization('Authorization', '{{auth_token_type}} ' + key, 'header'));
+            window.authorizations.add('key', new ApiKeyAuthorization('Authorization', '{{auth_token_type}} ' + key, 'header'));
+        {% else %}
+            window.authorizations.add("key", new ApiKeyAuthorization("api_key", key, "query"));
         {% endif %}
       }
     })
